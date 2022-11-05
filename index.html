@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <!-- <div id="myId">
+    <h1>Hello' SOhail</h1>
+
+  </div> -->
+
+
+    <script>
+
+
+//   const ele = document.getElementById('myId');
+
+//   // appending and creating new  text node to div
+//   ele.appendChild(document.createTextNode('Hello sahoo'));
+//   document.write(ele);
+
+//   // return Anonymous function
+//         function disp(a){
+//         return function(b){
+//         return a+b
+//     }
+// }
+
+//          var af = (disp(10))
+//          var result = af(20)
+//        document.write(result)
+    // var af =disp(10)(30)
+    // document.write(af)
+
+  //   if(0){
+  //   document.write('print 0')
+  //   }
+  //   else if(10){
+  //       document.write('print 10')
+  //   }
+  //  else if(101){
+  //  document.write('print 101')
+  //  }
+  //  else {
+  //   document.write('default')
+  //  }
+  console.log('start');
+    function getName(name){
+      return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+        resolve(name);
+      }, 2000)
+      })
+     
+    }
+
+    function getHobbies(name){
+      return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+        resolve(['cricket, football, coding']);  
+      }, 1000)
+      })
+     
+    }
+
+    const name = getName('sohail', (nm)=>{console.log(nm); 
+    getHobbies(name, (hobby)=>{console.log(hobby)} )} )
+
+    getName('SOHAIL')
+    .then(nm=> getHobbies(nm))
+    .then(hobby=> console.log(hobby))
+
+    async
+      async function showHobby(){
+        let nm = await getName('sohail')
+        let hobby = await getHobbies(nm)
+        console.log(hobby)
+
+     }
+
+    // showHobby()
+   
+
+   // some more examples of async await
+     async function showData() {
+      try{
+        const url ='https://jsonplaceholder.typicode.com/todos/1';
+        const res =  await fetch(url)
+        console.log(res.status)
+        const data =  await res.json()
+        //console.log('asynData',data)
+        return data
+      }
+      catch(err){
+       console.log('url invalid')
+      }
+    
+      }
+
+      const dataShows=   showData().then(data=> console.log(data))
+  
+   // multiple Api 
+     async function showApiList(){
+      try{
+        const url1 = 'https://jsonplaceholder.typicode.com/todos/1';
+        const url2 = 'https://jsonplaceholder.typicode.com/todos/2';
+        const url3 = 'https://jsonplaceholder.typicode.com/todos/3';
+
+        const results = await Promise.all([
+        fetch(url1),
+        fetch(url2),
+        fetch(url3),
+        ]
+        )
+        const finalData = await Promise.all(results.map(result=> result.json()))
+        console.log(finalData)
+        return finalData
+      } catch {
+
+      }
+     }
+
+     const dataShow=   showApiList().then(data=> console.log(data))
+    
+    </script>
+</body>
+</html>
